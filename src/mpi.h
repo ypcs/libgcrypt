@@ -104,12 +104,14 @@ struct gcry_mpi
   gcry_mpi_t  _gcry_mpi_copy( gcry_mpi_t a );
 #endif
 
+#define gcry_mpi_copy _gcry_mpi_copy
+
 #define mpi_is_opaque(a) ((a) && ((a)->flags&4))
 #define mpi_is_secure(a) ((a) && ((a)->flags&1))
 #define mpi_clear(a)          _gcry_mpi_clear ((a))
 #define mpi_alloc_like(a)     _gcry_mpi_alloc_like((a))
-#define mpi_set(a,b)          _gcry_mpi_set ((a),(b))
-#define mpi_set_ui(a,b)       _gcry_mpi_set_ui ((a),(b))
+#define mpi_set(a,b)          gcry_mpi_set ((a),(b))
+#define mpi_set_ui(a,b)       gcry_mpi_set_ui ((a),(b))
 #define mpi_get_ui(a,b)       _gcry_mpi_get_ui ((a),(b))
 #define mpi_alloc_set_ui(a)   _gcry_mpi_alloc_set_ui ((a))
 #define mpi_m_check(a)        _gcry_mpi_m_check ((a))
@@ -121,6 +123,7 @@ void _gcry_mpi_clear( gcry_mpi_t a );
 gcry_mpi_t  _gcry_mpi_alloc_like( gcry_mpi_t a );
 gcry_mpi_t  _gcry_mpi_alloc_set_ui( unsigned long u);
 gcry_err_code_t _gcry_mpi_get_ui (gcry_mpi_t w, ulong *u);
+gcry_err_code_t gcry_mpi_get_ui (gcry_mpi_t w, ulong *u);
 void _gcry_mpi_m_check( gcry_mpi_t a );
 void _gcry_mpi_swap( gcry_mpi_t a, gcry_mpi_t b);
 gcry_mpi_t _gcry_mpi_new (unsigned int nbits);
@@ -225,7 +228,7 @@ unsigned _gcry_mpi_trailing_zeros( gcry_mpi_t a );
 void _gcry_mpi_normalize( gcry_mpi_t a );
 
 /*-- mpi-inv.c --*/
-#define mpi_invm(a,b,c) _gcry_mpi_invm ((a),(b),(c))
+#define mpi_invm(a,b,c) gcry_mpi_invm ((a),(b),(c))
 
 /*-- ec.c --*/
 
